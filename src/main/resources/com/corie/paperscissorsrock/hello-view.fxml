@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.corie.paperscissorsrock.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <!-- split view in half with Player title on the left and Computer title on the right -->
+    <!-- on the player side, have a label for the player's choice and a button for each choice -->
+    <!-- on the computer side, have a label for the computer's choice -->
+    <!-- in the middle, have a label for the winner -->
+    <Label text="Player"/>
+    <Label text="Computer"/>
+    <Label text="Winner"/>
+
+    <Button text="Rock"/>
+    <Button text="Paper"/>
+    <Button text="Scissors"/>
+
+
+</VBox>
