@@ -6,9 +6,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -34,6 +38,7 @@ public class HelloApplication extends Application {
 
         // Pane
         GridPane root = new GridPane();
+        
 
         // Labels
         Label playerTitle = new Label("Player");
@@ -51,7 +56,9 @@ public class HelloApplication extends Application {
         Button rockButton = new Button("Rock");
         Button paperButton = new Button("Paper");
         Button scissorsButton = new Button("Scissors");
-
+        
+        ToggleButton toggleTheme = new ToggleButton("Toggle Theme");
+        
         playerTitle.setFont(new Font("Arial", 40));
         computerTitle.setFont(new Font("Arial", 40));
         playerScoreLabel.setFont(new Font("Arial", 40));
@@ -82,7 +89,7 @@ public class HelloApplication extends Application {
         scoreLayout.getChildren().addAll(playerScoreLabel, scoreCenter, computerScoreLabel);
         playerButtons.getChildren().addAll(rockButton, paperButton, scissorsButton);
         columnOne.getChildren().addAll(playerChoiceLabel, playerButtons);
-        columntwo.getChildren().addAll(scoreLayout, winnerLabel, tiesLabel, roundsLabel);
+        columntwo.getChildren().addAll(scoreLayout, winnerLabel, tiesLabel, roundsLabel, toggleTheme);
         columnThree.getChildren().addAll(computerChoiceLabel);
         horizontalBox.getChildren().addAll(columnOne, columntwo, columnThree);
 
@@ -118,10 +125,6 @@ public class HelloApplication extends Application {
         root.add(columnThree, 2, 1);
 
 
-
-
-
-
         Scene scene = new Scene(root, 750, 480);
         columnOne.setMinWidth(250);
         columntwo.setMinWidth(250);
@@ -134,7 +137,7 @@ public class HelloApplication extends Application {
 
 
         // Button Actions
-        rockButton.setOnAction(event -> {
+        rockButton.setOnAction(e -> {
             playerChoiceLabel.setText("Player Choice: Rock");
             computerChoice = (int) (Math.random() * 3);
             computerChoiceLabel.setText("Computer Choice: " + choices[computerChoice]);
@@ -155,7 +158,7 @@ public class HelloApplication extends Application {
             roundsLabel.setText("Rounds: " + rounds);
         });
 
-        paperButton.setOnAction(event -> {
+        paperButton.setOnAction(e -> {
             playerChoiceLabel.setText("Player Choice: Paper");
             computerChoice = (int) (Math.random() * 3);
             computerChoiceLabel.setText("Computer Choice: " + choices[computerChoice]);
@@ -176,7 +179,7 @@ public class HelloApplication extends Application {
             roundsLabel.setText("Rounds: " + rounds);
         });
 
-        scissorsButton.setOnAction(event -> {
+        scissorsButton.setOnAction(e -> {
             playerChoiceLabel.setText("Player Choice: Scissors");
             computerChoice = (int) (Math.random() * 3);
             computerChoiceLabel.setText("Computer Choice: " + choices[computerChoice]);
@@ -196,9 +199,46 @@ public class HelloApplication extends Application {
             rounds++;
             roundsLabel.setText("Rounds: " + rounds);
         });
+        
+        toggleTheme.setOnAction(e -> {
+        	if(toggleTheme.isSelected()) {
+        		root.setStyle("-fx-background-color: black");
+        		playerTitle.setStyle("-fx-text-fill: white");
+        		computerTitle.setStyle("-fx-text-fill: white");
+                playerScoreLabel.setStyle("-fx-text-fill: white");
+                computerScoreLabel.setStyle("-fx-text-fill: white");
+                tiesLabel.setStyle("-fx-text-fill: white");
+                roundsLabel.setStyle("-fx-text-fill: white");
+                playerChoiceLabel.setStyle("-fx-text-fill: white");
+                computerChoiceLabel.setStyle("-fx-text-fill: white");
+                winnerLabel.setStyle("-fx-text-fill: white");
+                scoreCenter.setStyle("-fx-text-fill: white");
+        	}else {
+        		root.setStyle("-fx-background-color: white");
+        		playerTitle.setStyle("-fx-text-fill: black");
+        		computerTitle.setStyle("-fx-text-fill: black");
+                playerScoreLabel.setStyle("-fx-text-fill: black");
+                computerScoreLabel.setStyle("-fx-text-fill: black");
+                tiesLabel.setStyle("-fx-text-fill: black");
+                roundsLabel.setStyle("-fx-text-fill: black");
+                playerChoiceLabel.setStyle("-fx-text-fill: black");
+                computerChoiceLabel.setStyle("-fx-text-fill: black");
+                winnerLabel.setStyle("-fx-text-fill: black");
+                scoreCenter.setStyle("-fx-text-fill: black");
+        	}
+        });
+    }
+    public static int testFunc(int ...nums){
+        int sum = 0;
+        for(int x: nums){
+            sum += x;
+        }
+
+        return sum;
     }
 
     public static void main(String[] args) {
+        System.out.println(testFunc(1,2,3,4,5,6,7,8,9,10));
         launch();
     }
 }
